@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
 
 interface RenameDialogProps {
     documentId: Id<"documents">;
@@ -22,7 +23,11 @@ export const RenameDialog = ({ documentId, initialTitle, children }: RenameDialo
         e.preventDefault();
         setIsUpdating(true);
         rename({ id: documentId, title: title.trim() || "Untitled" })
-            .then(() => setOpen(false))
+            .catch(() => toast.error("Something went wrong"))
+            .then(() => {
+                toast.success("Updated Successfully")
+                setOpen(false)
+            })
             .finally(() => {
                 setIsUpdating(false)
                 // setOpen(false);
