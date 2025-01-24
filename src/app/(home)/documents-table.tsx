@@ -1,7 +1,7 @@
 import { PaginationStatus } from "convex/react";
 import { Doc } from "../../../convex/_generated/dataModel"
 import { LoaderIcon } from "lucide-react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableRow } from "@/components/ui/table";
 import { DocumentRow } from "./document-row";
 import { Button } from "@/components/ui/button";
 
