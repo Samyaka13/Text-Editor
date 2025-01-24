@@ -32,13 +32,14 @@ import {
     Undo2Icon,
     UploadIcon
 } from "lucide-react";
-import { type ColorResult, SketchPicker } from "react-color"
+// import { type ColorResult, SketchPicker } from "react-color"
 import { type Level } from '@tiptap/extension-heading'
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@radix-ui/react-dialog";
 import { DialogFooter, DialogHeader } from "@/components/ui/dialog";
+import { ColorResult, SketchPicker } from "react-color";
 
 const LineHeightButton = () => {
     const { editor } = useEditorStore();
