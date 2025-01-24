@@ -30,16 +30,17 @@ const ErrorPage = ({ error, reset }: { error: Error & { digest?: string }; reset
                 >
                     Try Again
                 </Button>
+                <Link href="/">
                 <Button
-                    asChild
+                    // asChild
                     onClick={reset}
                     variant="ghost"
                     className="font-medium"
                 >
-                    <Link href="/">
+                    
                         Go back
-                    </Link>
                 </Button>
+                    </Link>
             </div>
         </div>
     );

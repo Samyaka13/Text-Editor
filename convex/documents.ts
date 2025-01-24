@@ -1,8 +1,6 @@
 import { mutation, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values"
 import { paginationOptsValidator } from "convex/server";
-import { Search } from "lucide-react";
-import { equal } from "assert";
 
 export const getByIds = query({
     args: { ids: v.array(v.id("documents")) },
@@ -134,6 +132,8 @@ export const updateById = mutation({
 export const getById = query({
     args: { id: v.id("documents") },
     handler: async (ctx, { id }) => {
-        return await ctx.db.get(id);
+        const document = await ctx.db.get(id);
+        if (!document) throw new ConvexError("Document not found");
+        return document ;
     },
 });
