@@ -20,7 +20,7 @@ import Underline from '@tiptap/extension-underline'
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
 
 //Custom extensions 
-import { FontSizeExtension } from '@/extensions/font-size'
+import { FontSizeExtension } from '../../../extensions/font-size'
 import { LineHeightExtension } from '@/extensions/line-height'
 import { Ruler } from './ruler'
 import { Threads } from './threads'
