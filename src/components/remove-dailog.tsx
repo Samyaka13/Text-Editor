@@ -7,7 +7,6 @@ import { api } from "../../convex/_generated/api";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { ConvexError } from "convex/values";
 
 
 interface RemoveDialogProps {
