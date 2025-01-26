@@ -43,6 +43,9 @@ export const get = query({
         if (!user) {
             throw new ConvexError("Unauthorized")
         }
+        console.log(user);
+        const orgRole = (user.organization_role ?? undefined) as string | undefined;
+
 
         const organizationId = (user.organization_id ?? undefined) as string | undefined
 
@@ -88,6 +91,7 @@ export const removeId = mutation({
             throw new ConvexError("Unauthorized")
         }
         const organizationId = (user.organization_id ?? undefined) as string | undefined;
+        const orgRole = (user.organization_role ?? undefined) as string | undefined;
         const document = await ctx.db.get(args.id);
         if (!document) {
             throw new ConvexError("Document not found");
@@ -96,10 +100,16 @@ export const removeId = mutation({
 
         const isOwner = document.ownerId === user.subject;
 
+
         //ToDO: Make the changes who can remove from the organisation and who cannot (Members cannot and Admins can)
 
-        if (!isOwner) {
+        if (!isOwner && !organizationId) {
             throw new ConvexError("Unauthorized");
+        }
+        if (orgRole === "org:member") {
+            if (!isOwner) {
+                throw new ConvexError("Member can only delete files that they have created");
+            }
         }
         return await ctx.db.delete(args.id);
     },
@@ -122,9 +132,7 @@ export const updateById = mutation({
         if (!isOrganizationMember && !isOwner) {
             throw new ConvexError("Unauthorized")
         }
-        if (!isOwner) {
-            throw new ConvexError("Unauthorized");
-        }
+
         return ctx.db.patch(args.id, { title: args.title });
     }
 });
@@ -134,6 +142,6 @@ export const getById = query({
     handler: async (ctx, { id }) => {
         const document = await ctx.db.get(id);
         if (!document) throw new ConvexError("Document not found");
-        return document ;
+        return document;
     },
 });

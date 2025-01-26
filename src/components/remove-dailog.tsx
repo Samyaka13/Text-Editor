@@ -7,6 +7,7 @@ import { api } from "../../convex/_generated/api";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { ConvexError } from "convex/values";
 
 
 interface RemoveDialogProps {
@@ -36,15 +37,21 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
                     <AlertDialogCancel onClick={(e) => e.stopPropagation()}>
                         Cancel
                     </AlertDialogCancel>
-                    <AlertDialogAction disabled={isRemoving} onClick={(e) => {
+                    <AlertDialogAction disabled={isRemoving} onClick={async (e) => {
                         e.stopPropagation();
                         setIsRemoving(true);
-                        remove({ id: documentId })
-                            .catch(() => toast.error("Something went wrong"))
-                            .then(() => {toast.success("Document removed")
+                       await remove({ id: documentId })
+                            .catch((error) => {
+                                if(error instanceof Error){
+                                    toast.error(error.message);
+                                    throw new Error("Document removal failed");
+                                }
+                            })
+                            .then(() => {
+                                toast.success("Document removed")
                                 router.push("/")
                             }
-                        )
+                            )
                             .finally(() => setIsRemoving(false))
                     }}>
                         Delete
