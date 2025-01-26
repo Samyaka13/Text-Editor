@@ -40,9 +40,9 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
                     <AlertDialogAction disabled={isRemoving} onClick={async (e) => {
                         e.stopPropagation();
                         setIsRemoving(true);
-                       await remove({ id: documentId })
+                        await remove({ id: documentId })
                             .catch((error) => {
-                                if(error instanceof ConvexError){
+                                if (error instanceof ConvexError) {
                                     toast.error(error.data);
                                     throw new Error("Document removal failed");
                                 }

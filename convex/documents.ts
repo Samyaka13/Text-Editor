@@ -88,7 +88,7 @@ export const removeId = mutation({
         const user = await ctx.auth.getUserIdentity();
 
         if (!user) {
-            throw new ConvexError("Unauthorized")
+            throw new ConvexError("You are not the owner of this document and neither you are the admin of this organization")
         }
         const organizationId = (user.organization_id ?? undefined) as string | undefined;
         const orgRole = (user.organization_role ?? undefined) as string | undefined;
