@@ -35,5 +35,5 @@ This project is a feature-rich, collaborative rich text editor built using **Rea
 - **Notifications System**: Integrated notifications for updates and interactions.  
 
 ---  
-"""
+
 
