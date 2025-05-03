@@ -1,4 +1,4 @@
-z# Collaborative Rich Text Editor  
+# Collaborative Rich Text Editor  
 
 ## Overview  
 This project is a feature-rich, collaborative rich text editor built using **React**, **Next.js 15**, **Tailwind CSS**, and **Radix UI**. It provides a robust editing experience with real-time collaboration capabilities, advanced formatting tools, and integration with modern libraries like **Tiptap** and **Liveblocks**. The editor is designed to streamline document creation and enhance team collaboration.  
